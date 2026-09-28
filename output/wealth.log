@@ -2,7 +2,7 @@
       name:  <unnamed>
        log:  C:\CLAUDE\Projects\Project6\output\wealth.log
   log type:  text
- opened on:  28 Sep 2026, 20:58:46
+ opened on:  28 Sep 2026, 21:03:31
 
 . 
 . *load survey_data:
@@ -16,18 +16,6 @@ Variable      Storage   Display    Value
     name         type    format    label      Variable label
 -------------------------------------------------------------------------------
 wealth          float   %9.0g                 Household wealth
-
-. 
-. *'svyset' the data:
-. svyset [pw=wt_int],psu(psu) strata(strata)
-
-Sampling weights: wt_int
-             VCE: linearized
-      Subpop. df: off
-     Single unit: missing
-        Strata 1: strata
- Sampling unit 1: psu
-           FPC 1: <zero>
 
 . 
 . *set values as missing:
@@ -45,6 +33,18 @@ Sampling weights: wt_int
     Variable |        Obs        Mean    Std. dev.       Min        Max
 -------------+---------------------------------------------------------
       wealth |        198    3705.758    2716.002    507.971   26695.71
+
+. 
+. *'svyset' the data:
+. svyset [pw=wt_int],psu(psu) strata(strata)
+
+Sampling weights: wt_int
+             VCE: linearized
+      Subpop. df: off
+     Single unit: missing
+        Strata 1: strata
+ Sampling unit 1: psu
+           FPC 1: <zero>
 
 . 
 . *estimate survey statistics for the outcome variable:
@@ -66,8 +66,8 @@ Number of PSUs   = 20             Population size = 301.407359
 
 . 
 . *publish the output using the etable command and save in a txt file
-. etable, cstat(_r_b, nformat(%7.2f)) cstat(_r_se, nformat(%7.2f)) export("C:/C
-> LAUDE/Projects/Project6/output/wealth.txt", replace)
+. etable, cstat(_r_b, nformat(%7.2f)) cstat(_r_se, nformat(%7.2f)) ///
+> export("C:/CLAUDE/Projects/Project6/output/wealth.txt", replace)
 
 -------------------------------
                          Mean  
@@ -86,12 +86,12 @@ Number of observations      198
 
 . display _newline "Run `date' at `time'"
 
-Run 28 Sep 2026 at 20:58:49
+Run 28 Sep 2026 at 21:03:34
 
 . 
 . log close
       name:  <unnamed>
        log:  C:\CLAUDE\Projects\Project6\output\wealth.log
   log type:  text
- closed on:  28 Sep 2026, 20:58:49
+ closed on:  28 Sep 2026, 21:03:34
 -------------------------------------------------------------------------------

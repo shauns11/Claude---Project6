@@ -57,17 +57,18 @@ use "C:\CLAUDE\Projects\Project6\data\survey_data.dta", clear
 *confirm outcome variable exists before proceeding:
 describe income
 
-*'svyset' the data:
-svyset [pw=wt_int],psu(psu) strata(strata)
-
 *set values as missing:
 mvdecode income,mv(-9/-1)
+
+*'svyset' the data:
+svyset [pw=wt_int],psu(psu) strata(strata)
 
 *estimate survey statistics for the outcome variable: 
 svy:mean income
 
 *publish the output using the etable command and save in a txt file
-etable, cstat(_r_b) cstat(_r_se, nformat(%7.2f)) export("C:/CLAUDE/Projects/Project6/output/income.txt", replace)
+etable, cstat(_r_b, nformat(%7.2f)) cstat(_r_se, nformat(%7.2f)) ///
+export("C:/CLAUDE/Projects/Project6/output/income.txt", replace)
 
 
 local date `c(current_date)'
